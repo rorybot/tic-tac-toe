@@ -13,11 +13,13 @@ class TicTacToe
     return @game_status = board.game_status if board.draw?
   end
 
-  def take_turn(player)
-    can_take_turn?(player)
+  def take_turn(player, symbol, row, index)
+    return player.place_piece(symbol, row, index) if can_take_turn?(player)
+    'Not ye turn laddy'
   end
 
-  # private
+  private
+
   def can_take_turn?(player)
     return @last_turn = player unless player.turns > find_opposite(player).turns
     false
@@ -25,10 +27,5 @@ class TicTacToe
 
   def find_opposite(player)
     [player1, player2].detect { |e| e != player }
-    #
-    # p bob
-    # p bob.turns
-    # p player
-    # p player.turns
   end
 end

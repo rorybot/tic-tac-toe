@@ -35,14 +35,14 @@ describe TicTacToe do
 
   describe 'taking turns' do
     let(:player1) { double('Player1', turns: 1) }
-    let(:player2) { double('Player2', turns: 0) }
+    let(:player2) { double('Player2', turns: 0, place_piece: 'You have played a turn') }
     let(:tictactoe) { TicTacToe.new(Board.new, player1, player2) }
     it 'player 2 can take a turn' do
-      expect(tictactoe.take_turn(player2)).to eq player2
+      expect(tictactoe.take_turn(player2, 'x', 'x', 'x')).to eq 'You have played a turn'
     end
     it 'wont let you player 1 play two in a row' do
-      tictactoe.take_turn(player1)
-      expect(tictactoe.take_turn(player1)).to eq false
+      tictactoe.take_turn(player1, 'x', 'x', 'x')
+      expect(tictactoe.take_turn(player1, 'x', 'x', 'x')).to eq 'Not ye turn laddy'
     end
   end
 end
