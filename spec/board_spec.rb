@@ -58,5 +58,15 @@ describe Board do
       expect(board.victory?).to eq true
       expect(board.game_status).to eq 'Win for X'
     end
+
+    it 'can declare a draw 'do
+      (0..1).to_a.each { |i| board.place_symbol('X', board.row_a, i) }
+      board.place_symbol('O', board.row_a, 2)
+      (0..1).to_a.each { |i| board.place_symbol('O', board.row_b, i) }
+      board.place_symbol('X', board.row_b, 2)
+      (0..1).to_a.each { |i| board.place_symbol('X', board.row_c, i) }
+      board.place_symbol('O', board.row_c, 2)
+
+    end
   end
 end

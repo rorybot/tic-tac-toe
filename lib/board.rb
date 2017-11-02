@@ -17,6 +17,12 @@ class Board
     check_every_horizontal_row_for_winner.class == String || check_every_vertical_row_for_winner.class == String || check_every_diaganol_for_winner.class == String
   end
 
+  def draw?
+    row_a.each{|x| x != nil}
+    row_b.each{|x| x != nil}
+    row_b.each{|x| x != nil}
+  end
+
   def game_status
     return @game_status = "Win for #{check_every_horizontal_row_for_winner}" if check_every_horizontal_row_for_winner
     return @game_status = "Win for #{check_every_vertical_row_for_winner}" if check_every_vertical_row_for_winner
@@ -48,4 +54,6 @@ class Board
   def check_every_diaganol_for_winner
     row_a[0] && row_b[1] && row_c[2] || row_a[2] && row_b[1] && row_c[0]
   end
+
+
 end
