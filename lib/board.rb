@@ -14,7 +14,7 @@ class Board
   end
 
   def victory?
-    check_every_horizontal_row_for_winner.class == String || check_every_vertical_row_for_winner.class == String || check_every_diaganol_for_winner.class == String
+    array_of_potential_wins.any? { |x| x.class == String }
   end
 
   def draw?
@@ -31,23 +31,29 @@ class Board
 
   private
 
+  def array_of_potential_wins
+    [check_every_horizontal_row_for_winner, check_every_diaganol_for_winner, check_every_vertical_row_for_winner]
+  end
+
   def check_every_horizontal_row_for_winner
-    if row_a == %w[X X X] || row_a == %w[O O O]
-      row_a.first
-    elsif row_b == %w[X X X] || row_b == %w[O O O]
-      row_b.first
-    elsif row_c == %w[X X X] || row_c == %w[O O O]
-      row_c.first
-    end
+    rows = [row_a, row_b, row_c]
+    rows.any? { |row| return row.first if every_letter_in_row_the_same?(row) }
+  end
+
+  def every_letter_in_row_the_same?(row)
+    row.all? { |letter| letter == row[0] }
+  end
+
+  def every_letter_in_column_the_same(column)
+    column.all? { |letter| letter == column[0] }
   end
 
   def check_every_vertical_row_for_winner
     left_column = [row_a[0], row_b[0], row_c[0]]
-    return row_a[0] if left_column.all? { |letter| letter == left_column[0] }
     middle_column = [row_a[1], row_b[1], row_c[1]]
-    return row_a[1] if middle_column.all? { |letter| letter == middle_column[0] }
     right_column = [row_a[2], row_b[2], row_c[2]]
-    return row_a[2] if right_column.all? { |letter| letter == right_column[0] }
+    all_columns = left_column, middle_column, right_column
+    all_columns.any?{|column| return column[all_columns.index(column)] if every_letter_in_column_the_same(column)}
   end
 
   def check_every_diaganol_for_winner

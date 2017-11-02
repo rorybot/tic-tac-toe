@@ -1,4 +1,5 @@
-
+require_relative 'player'
+require_relative 'board'
 class TicTacToe
   attr_reader :player1, :player2, :game_status, :board
   def initialize(board = Board.new, player1 = Player.new('Hero'), player2 = Player.new('Nemesis'))
