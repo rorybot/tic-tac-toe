@@ -1,7 +1,7 @@
 require 'simplecov'
 require 'simplecov-console'
-require './lib/tictactoe'
-require './lib/board'
+
+Dir["./lib/*.rb"].each {|file| require file }
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   [SimpleCov::Formatter::Console,

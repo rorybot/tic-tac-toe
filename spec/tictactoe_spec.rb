@@ -35,4 +35,14 @@ describe TicTacToe do
       expect(tictactoe.who_won?).to eq 'Draw'
     end
   end
+
+  describe 'taking turns' do
+    let(:tictactoe){TicTacToe.new(Board.new)}
+    let(:player1){tictactoe.player1}
+    it 'player 1 can take a turn' do
+      expect(tictactoe.take_turn(player1)).to eq true
+      expect(tictactoe.last_turn).to eq 'Hero'
+    end
+
+  end
 end
