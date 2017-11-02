@@ -27,6 +27,7 @@ class Board
     return @game_status = "Win for #{check_every_horizontal_row_for_winner}" if check_every_horizontal_row_for_winner
     return @game_status = "Win for #{check_every_vertical_row_for_winner}" if check_every_vertical_row_for_winner
     return @game_status = "Win for #{check_every_diaganol_for_winner}" if check_every_diaganol_for_winner
+    return @game_status = "Draw" if draw?
   end
 
   private
