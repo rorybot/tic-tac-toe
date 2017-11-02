@@ -43,4 +43,8 @@ class Board
       return row_a[2]
     end
   end
+
+  def check_every_diaganol_for_winner
+
+  end
 end

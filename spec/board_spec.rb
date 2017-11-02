@@ -21,9 +21,12 @@ describe Board do
 
     it 'cannot place pieces on occupied spaces' do
       board.place_symbol('X', board.row_a, 0)
-      expect{board.place_symbol('O', board.row_a, 0)}.to raise_error 'Occupied'
+      expect { board.place_symbol('O', board.row_a, 0) }.to raise_error 'Occupied'
     end
+  end
 
+  describe 'trying for victory' do
+    let(:board) { Board.new }
     it 'can declare horizontal_victory for X' do
       (0..2).to_a.each { |i| board.place_symbol('X', board.row_a, i) }
       expect(board.victory?).to eq true
@@ -48,5 +51,12 @@ describe Board do
       expect(board.game_status).to eq 'Win for O'
     end
 
+    it 'can declare diaganol_victory for X' do
+      board.place_symbol('X', board.row_a, 0)
+      board.place_symbol('X', board.row_b, 1)
+      board.place_symbol('X', board.row_c, 2)
+      expect(board.victory?).to eq true
+      expect(board.game_status).to eq 'Win for X'
+    end
   end
 end
