@@ -8,8 +8,18 @@ class TicTacToe
     @board = board
   end
 
+  def query_game_status
+    who_won? if winner?
+  end
+
+  private
+
   def winner?
-    @game_status = 'Win for X' if board.horizontal_victory
-    return true
+    board.horizontal_victory?
+  end
+
+  def who_won?
+    @game_status = board.game_status if board.horizontal_victory?
+    return game_status
   end
 end

@@ -10,18 +10,11 @@ describe TicTacToe do
 
   describe 'playing a game' do
 
-    let(:board){ double('Board', horizontal_victory: true, game_status: 'Win for X')}
+    let(:board){ double('Board', horizontal_victory?: true, game_status: 'Win for X')}
 
     it 'can declare a victory from a horizontal row' do
       tictactoe = TicTacToe.new(board)
-      expect(tictactoe.winner?).to eq true
-      expect(tictactoe.game_status).to eq 'Win for X'
-    end
-
-    it 'can declare a victory from a horizontal row' do
-      tictactoe = TicTacToe.new(board)
-      expect(tictactoe.winner?).to eq true
-      expect(tictactoe.game_status).to eq 'Win for X'
+      expect(tictactoe.query_game_status).to eq 'Win for X'
     end
   end
 end
