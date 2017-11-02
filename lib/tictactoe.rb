@@ -15,12 +15,9 @@ class TicTacToe
   end
 
   def take_turn(player)
-    @last_turn = player
-    return true
+    return @last_turn = player unless last_turn == player
+    return false
   end
-  #
-  # def whose_turn?
-  #   players = [player1, player2]
-  #   players
-  # end
+
+
 end

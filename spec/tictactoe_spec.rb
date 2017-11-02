@@ -40,9 +40,11 @@ describe TicTacToe do
     let(:tictactoe){TicTacToe.new(Board.new)}
     let(:player1){tictactoe.player1}
     it 'player 1 can take a turn' do
-      expect(tictactoe.take_turn(player1)).to eq true
-      expect(tictactoe.last_turn).to eq 'Hero'
+      expect(tictactoe.take_turn(player1)).to eq 'Hero'
     end
-
+    it 'wont let you play two in a row' do
+      tictactoe.take_turn(player1)
+      expect(tictactoe.take_turn(player1)).to eq false
+    end
   end
 end
