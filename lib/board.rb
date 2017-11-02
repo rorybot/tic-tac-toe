@@ -3,18 +3,13 @@ require_relative 'board_logic'
 class Board
   attr_reader :row_a, :row_b, :row_c, :game_status, :board_logic
   def initialize(board_logic = BoardLogic.new)
-    @row_a = [nil, nil, nil]
-    @row_b = [nil, nil, nil]
-    @row_c = [nil, nil, nil]
     @game_status = 'not finished'
     @board_logic = board_logic
-    populate(board_logic)
   end
 
   def place_symbol(symbol, row, index)
-    raise 'Occupied' if row[index].class == String
-    row[index] = symbol
-    row
+    raise 'Occupied' if board_logic.occupied_space(row, index)
+    return board_logic.place_symbol(row, index, symbol)
   end
 
   def victory?
@@ -32,13 +27,4 @@ class Board
     # return @game_status = "Draw" if draw?
     @game_status
   end
-
-  private
-
-  def populate(logic)
-    board_logic.row_a = row_a
-    board_logic.row_b = row_b
-    board_logic.row_c = row_c
-  end
-
 end
