@@ -14,12 +14,12 @@ class Board
   end
 
   def victory?
-     return true if check_every_horizontal_row_for_winner || check_every_vertical_row_for_winner
+    check_every_horizontal_row_for_winner.class == String || check_every_vertical_row_for_winner.class == String
   end
 
   def game_status
-     return @game_status = "Win for #{check_every_horizontal_row_for_winner}" if victory?
-     @game_status = 'No winner'
+     return @game_status = "Win for #{check_every_horizontal_row_for_winner}" if check_every_horizontal_row_for_winner
+     return @game_status = "Win for #{check_every_vertical_row_for_winner}" if check_every_vertical_row_for_winner
   end
 
   private
@@ -35,6 +35,12 @@ class Board
   end
 
   def check_every_vertical_row_for_winner
-    false
+    if row_a[0] && row_b[0] && row_c[0]
+      return row_a[0]
+    elsif row_a[1] && row_b[1] && row_c[1]
+      return row_a[1]
+    elsif row_a[2] && row_b[2] && row_c[2]
+      return row_a[2]
+    end
   end
 end

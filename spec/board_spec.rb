@@ -43,7 +43,7 @@ describe Board do
     end
 
     it 'can declare vertical_victory for O' do
-      [board.row_a, board.row_b, board.row_c].to_a.each { |row| board.place_symbol('X', row, 0) }
+      [board.row_a, board.row_b, board.row_c].to_a.each { |row| board.place_symbol('O', row, 0) }
       expect(board.victory?).to eq true
       expect(board.game_status).to eq 'Win for O'
     end
