@@ -19,6 +19,11 @@ describe Board do
       expect(board.row_a).to eq %w[X X X]
     end
 
+    it 'cannot place pieces on occupied spaces' do
+      board.place_symbol('X', board.row_a, 0)
+      expect{board.place_symbol('O', board.row_a, 0)}.to raise_error 'Occupied' 
+    end
+
     it 'can declare horizontal_victory for X' do
       (0..2).to_a.each { |i| board.place_symbol('X', board.row_a, i) }
       expect(board.horizontal_victory?).to eq true

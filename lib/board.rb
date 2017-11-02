@@ -8,6 +8,7 @@ class Board
   end
 
   def place_symbol(symbol, row, index)
+    raise 'Occupied' if row[index].class == String
     row[index] = symbol
     return row
   end
