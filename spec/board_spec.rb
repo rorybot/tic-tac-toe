@@ -33,10 +33,12 @@ describe Board do
       expect(board.game_status).to eq 'Win for X'
     end
 
-    it 'can declare horizontal_victory for O' do
-      (0..2).to_a.each { |i| board.place_symbol('O', board.row_a, i) }
-      expect(board.victory?).to eq true
-      expect(board.game_status).to eq 'Win for O'
+    it 'canNOT declare horizontal_victory for X' do
+     board.place_symbol('X', board.row_a, 0)
+     board.place_symbol('O', board.row_a, 1)
+     board.place_symbol('X', board.row_a, 2)
+      expect(board.victory?).to eq false
+      expect(board.game_status).to eq 'not finished'
     end
 
     it 'can declare vertical_victory for X' do
@@ -45,18 +47,33 @@ describe Board do
       expect(board.game_status).to eq 'Win for X'
     end
 
-    it 'can declare vertical_victory for O' do
-      [board.row_a, board.row_b, board.row_c].to_a.each { |row| board.place_symbol('O', row, 0) }
-      expect(board.victory?).to eq true
-      expect(board.game_status).to eq 'Win for O'
+    it 'canNOT declare vertical_victory for O' do
+      [board.row_a, board.row_b].to_a.each { |row| board.place_symbol('O', row, 0) }
+      board.place_symbol('X', board.row_c, 0)
+      expect(board.victory?).to eq false
+      expect(board.game_status).to eq 'not finished'
     end
 
     it 'can declare diaganol_victory for X' do
       board.place_symbol('X', board.row_a, 0)
       board.place_symbol('X', board.row_b, 1)
       board.place_symbol('X', board.row_c, 2)
+      p board.row_a
+      p board.row_b
+      p board.row_c
       expect(board.victory?).to eq true
       expect(board.game_status).to eq 'Win for X'
+    end
+
+    it 'canNOT declare diaganol_victory for X' do
+      board.place_symbol('X', board.row_a, 0)
+      board.place_symbol('X', board.row_b, 1)
+      board.place_symbol('O', board.row_c, 2)
+      p board.row_a
+      p board.row_b
+      p board.row_c
+      expect(board.victory?).to eq false
+      expect(board.game_status).to eq 'not finished'
     end
 
     it 'can declare a draw 'do
@@ -66,7 +83,9 @@ describe Board do
       board.place_symbol('X', board.row_b, 2)
       (0..1).to_a.each { |i| board.place_symbol('X', board.row_c, i) }
       board.place_symbol('O', board.row_c, 2)
-
+      p board.row_a
+      p board.row_b
+      p board.row_c
     end
   end
 end
