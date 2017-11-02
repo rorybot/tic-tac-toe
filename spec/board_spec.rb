@@ -34,9 +34,9 @@ describe Board do
     end
 
     it 'canNOT declare horizontal_victory for X' do
-     board.place_symbol('X', board.row_a, 0)
-     board.place_symbol('O', board.row_a, 1)
-     board.place_symbol('X', board.row_a, 2)
+      board.place_symbol('X', board.row_a, 0)
+      board.place_symbol('O', board.row_a, 1)
+      board.place_symbol('X', board.row_a, 2)
       expect(board.victory?).to eq false
       expect(board.game_status).to eq 'not finished'
     end
@@ -58,9 +58,6 @@ describe Board do
       board.place_symbol('X', board.row_a, 0)
       board.place_symbol('X', board.row_b, 1)
       board.place_symbol('X', board.row_c, 2)
-      p board.row_a
-      p board.row_b
-      p board.row_c
       expect(board.victory?).to eq true
       expect(board.game_status).to eq 'Win for X'
     end
@@ -69,23 +66,17 @@ describe Board do
       board.place_symbol('X', board.row_a, 0)
       board.place_symbol('X', board.row_b, 1)
       board.place_symbol('O', board.row_c, 2)
-      p board.row_a
-      p board.row_b
-      p board.row_c
       expect(board.victory?).to eq false
       expect(board.game_status).to eq 'not finished'
     end
 
-    it 'can declare a draw 'do
+    it 'can declare a draw ' do
       (0..1).to_a.each { |i| board.place_symbol('X', board.row_a, i) }
       board.place_symbol('O', board.row_a, 2)
       (0..1).to_a.each { |i| board.place_symbol('O', board.row_b, i) }
       board.place_symbol('X', board.row_b, 2)
       (0..1).to_a.each { |i| board.place_symbol('X', board.row_c, i) }
       board.place_symbol('O', board.row_c, 2)
-      p board.row_a
-      p board.row_b
-      p board.row_c
     end
   end
 end
