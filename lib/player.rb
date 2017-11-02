@@ -1,7 +1,8 @@
 class Player
-  attr_reader :turns
-  def initialize
+  attr_reader :turns, :name
+  def initialize(name)
     @turns = 0
+    @name = name
   end
 
   def place_piece(symbol, row, index)

@@ -1,7 +1,7 @@
 
 class TicTacToe
   attr_reader :player1, :player2, :game_status, :board
-  def initialize(board = Board.new, player1 = 'Hero', player2 = 'Nemesis')
+  def initialize(board = Board.new, player1 = Player.new('Hero'), player2 = Player.new('Nemesis'))
     @player1 = player1
     @player2 = player2
     @game_status = 'No Winner'
@@ -20,16 +20,15 @@ class TicTacToe
   # private
   def can_take_turn?(player)
     return @last_turn = player unless player.turns > find_opposite(player).turns
-    return false
+    false
   end
 
   def find_opposite(player)
-    [player1, player2].detect{|e| e != player}
+    [player1, player2].detect { |e| e != player }
     #
     # p bob
     # p bob.turns
     # p player
     # p player.turns
   end
-
 end
