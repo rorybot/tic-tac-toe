@@ -37,12 +37,13 @@ describe TicTacToe do
   end
 
   describe 'taking turns' do
-    let(:tictactoe){TicTacToe.new(Board.new)}
-    let(:player1){tictactoe.player1}
-    it 'player 1 can take a turn' do
-      expect(tictactoe.take_turn(player1)).to eq 'Hero'
+    let(:player1){double('Player1', turns: 1)}
+    let(:player2){double('Player2', turns: 0)}
+    let(:tictactoe){TicTacToe.new(Board.new, player1, player2)}
+    it 'player 2 can take a turn' do
+      expect(tictactoe.take_turn(player2)).to eq player2
     end
-    it 'wont let you play two in a row' do
+    it 'wont let you player 1 play two in a row' do
       tictactoe.take_turn(player1)
       expect(tictactoe.take_turn(player1)).to eq false
     end
