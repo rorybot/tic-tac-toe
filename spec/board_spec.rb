@@ -21,18 +21,30 @@ describe Board do
 
     it 'cannot place pieces on occupied spaces' do
       board.place_symbol('X', board.row_a, 0)
-      expect{board.place_symbol('O', board.row_a, 0)}.to raise_error 'Occupied' 
+      expect{board.place_symbol('O', board.row_a, 0)}.to raise_error 'Occupied'
     end
 
     it 'can declare horizontal_victory for X' do
       (0..2).to_a.each { |i| board.place_symbol('X', board.row_a, i) }
-      expect(board.horizontal_victory?).to eq true
+      expect(board.victory?).to eq true
       expect(board.game_status).to eq 'Win for X'
     end
 
     it 'can declare horizontal_victory for O' do
       (0..2).to_a.each { |i| board.place_symbol('O', board.row_a, i) }
-      expect(board.horizontal_victory?).to eq true
+      expect(board.victory?).to eq true
+      expect(board.game_status).to eq 'Win for O'
+    end
+
+    it 'can declare vertical_victory for X' do
+      [board.row_a, board.row_b, board.row_c].to_a.each { |row| board.place_symbol('X', row, 0) }
+      expect(board.victory?).to eq true
+      expect(board.game_status).to eq 'Win for X'
+    end
+
+    it 'can declare vertical_victory for O' do
+      [board.row_a, board.row_b, board.row_c].to_a.each { |row| board.place_symbol('X', row, 0) }
+      expect(board.victory?).to eq true
       expect(board.game_status).to eq 'Win for O'
     end
 

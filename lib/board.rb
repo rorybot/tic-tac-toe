@@ -13,12 +13,13 @@ class Board
     return row
   end
 
-  def horizontal_victory?
-    return true if check_every_horizontal_row_for_winner == 'O' || 'X'
+  def victory?
+     return true if check_every_horizontal_row_for_winner || check_every_vertical_row_for_winner
   end
 
   def game_status
-    return @game_status = "Win for #{check_every_horizontal_row_for_winner}" if horizontal_victory?
+     return @game_status = "Win for #{check_every_horizontal_row_for_winner}" if victory?
+     @game_status = 'No winner'
   end
 
   private
@@ -31,5 +32,9 @@ class Board
     elsif row_c == ['X','X','X'] || row_c == ['O','O','O']
       return row_c.first
     end
+  end
+
+  def check_every_vertical_row_for_winner
+    false
   end
 end

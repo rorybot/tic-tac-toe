@@ -10,7 +10,7 @@ describe TicTacToe do
 
   describe 'playing a game' do
 
-    let(:board){ double('Board', horizontal_victory?: true, game_status: 'Win for X')}
+    let(:board){ double('Board', victory?: true, game_status: 'Win for X')}
 
     it 'can declare a victory from a horizontal row' do
       tictactoe = TicTacToe.new(board)

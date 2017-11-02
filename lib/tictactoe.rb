@@ -15,11 +15,11 @@ class TicTacToe
   private
 
   def winner?
-    board.horizontal_victory?
+    board.victory?
   end
 
   def who_won?
-    @game_status = board.game_status if board.horizontal_victory?
+    @game_status = board.game_status if board.victory?
     return game_status
   end
 end
