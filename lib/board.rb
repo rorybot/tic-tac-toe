@@ -9,7 +9,7 @@ class Board
 
   def place_symbol(symbol, row, index)
     raise 'Occupied' if board_logic.occupied_space(row, index)
-    return board_logic.place_symbol(row, index, symbol)
+    board_logic.place_symbol(row, index, symbol)
   end
 
   def victory?
@@ -21,10 +21,7 @@ class Board
   end
 
   def game_status
-    return @game_status = "Win for #{board_logic.check_every_horizontal_row_for_winner}" if board_logic.check_every_horizontal_row_for_winner
-    return @game_status = "Win for #{board_logic.check_every_vertical_row_for_winner}" if board_logic.check_every_vertical_row_for_winner
-    return @game_status = "Win for #{board_logic.check_every_diaganol_for_winner}" if board_logic.check_every_diaganol_for_winner
-    # return @game_status = "Draw" if draw?
+    return @game_status = "Win for #{board_logic.if_a_winner_give_me_the_string}" if board_logic.if_a_winner_give_me_the_string
     @game_status
   end
 end

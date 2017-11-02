@@ -10,6 +10,22 @@ class BoardLogic
     [check_every_horizontal_row_for_winner, check_every_diaganol_for_winner, check_every_vertical_row_for_winner]
   end
 
+  def occupied_space(row, index)
+    row[index].class == String
+  end
+
+  def place_symbol(row, index, symbol)
+    row[index] = symbol
+    row
+  end
+
+  def if_a_winner_give_me_the_string
+    [check_every_horizontal_row_for_winner, check_every_vertical_row_for_winner,
+     check_every_diaganol_for_winner].any? { |result| return result if result.class == String }
+  end
+
+  private
+
   def check_every_horizontal_row_for_winner
     rows = [row_a, row_b, row_c]
     rows.any? { |row| return row.first if every_letter_in_row_the_same?(row) }
@@ -28,7 +44,7 @@ class BoardLogic
     middle_column = [row_a[1], row_b[1], row_c[1]]
     right_column = [row_a[2], row_b[2], row_c[2]]
     all_columns = left_column, middle_column, right_column
-    all_columns.any?{|column| return column[all_columns.index(column)] if every_letter_in_column_the_same(column)}
+    all_columns.any? { |column| return column[all_columns.index(column)] if every_letter_in_column_the_same(column) }
   end
 
   def check_every_diaganol_for_winner
@@ -37,14 +53,5 @@ class BoardLogic
 
     second_diagonal = [row_a[2], row_b[1], row_c[0]]
     return row_b[1] if second_diagonal.all? { |letter| letter == second_diagonal[0] }
-  end
-
-  def occupied_space(row, index)
-    row[index].class == String
-  end
-
-  def place_symbol(row,index, symbol)
-    row[index] = symbol
-    return row
   end
 end
