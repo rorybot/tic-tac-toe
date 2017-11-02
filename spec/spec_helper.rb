@@ -1,6 +1,7 @@
 require 'simplecov'
 require 'simplecov-console'
 require './lib/tictactoe'
+require './lib/board'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   [SimpleCov::Formatter::Console,
