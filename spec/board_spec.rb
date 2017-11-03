@@ -1,6 +1,7 @@
 describe Board do
   describe 'initialisation' do
     let(:board) { Board.new }
+    let(:printer) { double('Printer', occupied_space: 'Occupied') }
     it 'has three arrays' do
       expect(board.board_logic.row_a.class).to eq Array
       expect(board.board_logic.row_b.class).to eq Array
@@ -21,7 +22,7 @@ describe Board do
 
     it 'cannot place pieces on occupied spaces' do
       board.place_symbol('X', board.board_logic.row_a, 0)
-      expect { board.place_symbol('O', board.board_logic.row_a, 0) }.to raise_error 'Occupied'
+      expect(board.place_symbol('O', board.board_logic.row_a, 0)).to eq false
     end
   end
 
@@ -30,7 +31,7 @@ describe Board do
     it 'can declare horizontal_victory for X' do
       (0..2).to_a.each { |i| board.place_symbol('X', board.board_logic.row_a, i) }
       expect(board.victory?).to eq true
-      expect(board.game_status).to eq 'Win for X'
+      expect(board.return_winner).to eq 'X'
     end
 
     it 'canNOT declare horizontal_victory for X' do
@@ -44,7 +45,7 @@ describe Board do
     it 'can declare vertical_victory for X' do
       [board.board_logic.row_a, board.board_logic.row_b, board.board_logic.row_c].to_a.each { |row| board.place_symbol('X', row, 0) }
       expect(board.victory?).to eq true
-      expect(board.game_status).to eq 'Win for X'
+      expect(board.return_winner).to eq 'X'
     end
 
     it 'canNOT declare vertical_victory for O' do
@@ -59,7 +60,7 @@ describe Board do
       board.place_symbol('X', board.board_logic.row_b, 1)
       board.place_symbol('X', board.board_logic.row_c, 2)
       expect(board.victory?).to eq true
-      expect(board.game_status).to eq 'Win for X'
+      expect(board.return_winner).to eq 'X'
     end
 
     it 'canNOT declare diaganol_victory for X' do

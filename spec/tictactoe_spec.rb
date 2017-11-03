@@ -9,7 +9,7 @@ describe TicTacToe do
   end
 
   describe 'playing a game' do
-    let(:board) { double('Board', victory?: true, game_status: 'Win for X', draw?: false) }
+    let(:board) { double('Board', victory?: true, game_status: 'Win for X', draw?: false, return_winner: 'X') }
     it 'can declare a victory from a horizontal row' do
       tictactoe = TicTacToe.new(board)
       expect(tictactoe.who_won?).to eq 'Win for X'
@@ -17,7 +17,7 @@ describe TicTacToe do
   end
 
   describe 'winning a game' do
-    let(:board) { double('Board', victory?: true, game_status: 'Win for X', draw?: nil) }
+    let(:board) { double('Board', victory?: true, game_status: 'Win for X', draw?: nil, return_winner: 'X') }
     it 'can declare a victory from a horizontal row' do
       tictactoe = TicTacToe.new(board)
       expect(tictactoe.who_won?).to eq 'Win for X'
@@ -34,7 +34,7 @@ describe TicTacToe do
   end
 
   describe 'taking turns' do
-    let(:player1) { double('Player1', turns: 1) }
+    let(:player1) { double('Player1', turns: 1, place_piece: nil) }
     let(:player2) { double('Player2', turns: 0, place_piece: 'You have played a turn') }
     let(:tictactoe) { TicTacToe.new(Board.new, player1, player2) }
     it 'player 2 can take a turn' do

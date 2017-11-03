@@ -8,8 +8,8 @@ class Board
   end
 
   def place_symbol(symbol, row, index)
-    raise 'Occupied' if board_logic.occupied_space(row, index)
-    board_logic.place_symbol(row, index, symbol)
+    return board_logic.place_symbol(row, index, symbol) unless board_logic.occupied_space(row, index)
+    false
   end
 
   def victory?
@@ -20,8 +20,7 @@ class Board
     row_a.each { |x| !x.nil? } && row_b.each { |x| !x.nil? } && row_b.each { |x| !x.nil? }
   end
 
-  def game_status
-    return @game_status = "Win for #{board_logic.if_a_winner_give_me_the_string}" if board_logic.if_a_winner_give_me_the_string
-    @game_status
+  def return_winner
+    return board_logic.return_winner_string.to_s if board_logic.return_winner_string
   end
 end
