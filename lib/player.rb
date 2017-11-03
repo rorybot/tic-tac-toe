@@ -5,7 +5,11 @@ class Player
     @name = name
   end
 
-  def place_piece(_symbol, _row, _index)
+  def place_piece
     @turns += 1
+  end
+
+  def to_s
+    "#{name}"
   end
 end
