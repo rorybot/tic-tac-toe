@@ -19,9 +19,15 @@ class TicTacToe
   def take_turn(player, row, index, symbol)
     return printer.illegal_move_attempt if last_turn == player
     return printer.occupied_space_warning if grid.occupied_space(row, index)
-    @last_turn = player
+    log_turn(player)
     grid.place_symbol(row, index, symbol)
     return printer.turn_played
     raise 'WTF'
+  end
+
+  private
+
+  def log_turn(player)
+    @last_turn = player
   end
 end
