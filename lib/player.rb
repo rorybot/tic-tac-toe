@@ -5,8 +5,7 @@ class Player
     @name = name
   end
 
-  def place_piece(symbol, row, index)
-    @turns +=1
-    return 'You have played a turn'
+  def place_piece(_symbol, _row, _index)
+    @turns += 1
   end
 end

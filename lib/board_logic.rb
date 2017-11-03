@@ -7,7 +7,7 @@ class BoardLogic
   end
 
   def array_of_potential_wins
-    [check_every_horizontal_row_for_winner, check_every_diaganol_for_winner, check_every_vertical_row_for_winner]
+    [check_every_horizontal_row_for_winner, check_every_diagonal_for_winner, check_every_vertical_row_for_winner]
   end
 
   def occupied_space(row, index)
@@ -19,9 +19,9 @@ class BoardLogic
     row
   end
 
-  def if_a_winner_give_me_the_string
+  def return_winner_string
     [check_every_horizontal_row_for_winner, check_every_vertical_row_for_winner,
-     check_every_diaganol_for_winner].any? { |result| return result if result.class == String }
+     check_every_diagonal_for_winner].any? { |result| return result if result.class == String }
   end
 
   private
@@ -31,7 +31,7 @@ class BoardLogic
   end
 
   def every_letter_the_same(line)
-    line.all?{|letter| letter == line[0]}
+    line.all? { |letter| letter == line[0] }
   end
 
   def check_every_vertical_row_for_winner
@@ -39,16 +39,16 @@ class BoardLogic
     all_columns.any? { |column| return column[all_columns.index(column)] if every_letter_the_same(column) }
   end
 
-  def check_every_diaganol_for_winner
+  def check_every_diagonal_for_winner
     first_diagonal = [row_a[0], row_b[1], row_c[2]]
+    second_diagonal = [row_c[0], row_b[1], row_a[2]]
     return row_b[1] if every_letter_the_same(first_diagonal)
-
-    second_diagonal = [row_a[2], row_b[1], row_c[0]]
     return row_b[1] if every_letter_the_same(second_diagonal)
   end
 
   def row_query(index = nil)
+    # return [row_a[i], row_b[i], row_c[i]]if index.class == Array
     return [row_a[index], row_b[index], row_c[index]] if index
-    return [row_a, row_b, row_c]
+    [row_a, row_b, row_c]
   end
 end
