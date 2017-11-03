@@ -16,12 +16,12 @@ class Grid
     line.all? { |letter| letter == line[0] }
   end
 
-  def place_symbol(row, index, symbol)
+  def place_symbol(row,index,symbol)
     row[index] = symbol
     row
   end
 
-  def occupied_space(row, index)
+  def occupied_space(row,index)
     row[index].class == String
   end
 

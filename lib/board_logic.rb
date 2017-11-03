@@ -13,10 +13,6 @@ class BoardLogic
     [check_every_horizontal_row_for_winner, check_every_diagonal_for_winner, check_every_vertical_row_for_winner]
   end
 
-  def occupied_space(row, index)
-    grid.occupied_space(row, index)
-  end
-
   def place_symbol(row, index, symbol)
     return grid.place_symbol(row, index, symbol) unless grid.occupied_space(row, index)
     false

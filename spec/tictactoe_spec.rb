@@ -28,7 +28,6 @@ describe TicTacToe do
     let(:board_logic) { double('BoardLogic', victory?: false, game_status: 'Draw', draw?: true, return_winner_string: false) }
     it 'can declare a draw' do
       tictactoe = TicTacToe.new(board_logic)
-      p board_logic.draw?
       expect(tictactoe.who_won?).to eq 'Draw'
     end
   end
@@ -43,6 +42,11 @@ describe TicTacToe do
     it 'wont let you player 1 play two in a row' do
       tictactoe.take_turn(player1, 'x', 'x', 'x')
       expect(tictactoe.take_turn(player1, 'x', 'x', 'x')).to eq 'Not ye turn laddy'
+    end
+
+    it 'wont let player 1 overwrite player2' do
+      # tictactoe.take_turn(player1, 'x', 'x', 'x')
+      # expect(tictactoe.take_turn(player1, 'x', 'x', 'x')).to eq 'Not ye turn laddy'
     end
   end
 end

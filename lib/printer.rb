@@ -5,7 +5,7 @@ class Printer
   end
 
   def illegal_move_attempt
-    'Not ye turn laddy'
+  return 'Not ye turn laddy'
   end
 
   def not_finished
@@ -28,7 +28,10 @@ class Printer
     'You have played a turn'
   end
 
+  def occupied_space
+  end
+
   def to_s
-    game_status.to_s
+    "#{game_status}"
   end
 end
