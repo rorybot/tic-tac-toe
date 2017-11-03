@@ -14,18 +14,17 @@ class BoardLogic
   end
 
   def occupied_space(row, index)
-    grid.occupied_space(row,index)
+    grid.occupied_space(row, index)
   end
 
   def place_symbol(row, index, symbol)
-    return grid.place_symbol(row,index,symbol) unless grid.occupied_space(row, index)
-    return false
+    return grid.place_symbol(row, index, symbol) unless grid.occupied_space(row, index)
+    false
   end
 
   def return_winner_string
     [grid.check_every_horizontal_row_for_winner, grid.check_every_vertical_row_for_winner,
      grid.check_every_diagonal_for_winner].any? { |result| return result if result.class == String }
-     return false
+    false
   end
-
 end

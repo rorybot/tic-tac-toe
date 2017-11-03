@@ -18,7 +18,7 @@ class TicTacToe
   def take_turn(player, row, index, symbol)
     return printer.illegal_move_attempt unless can_take_turn?(player)
     player.place_piece
-    board_logic.place_symbol(row,index,symbol)
+    board_logic.place_symbol(row, index, symbol)
     printer.turn_played
   end
 

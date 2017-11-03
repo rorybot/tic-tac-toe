@@ -5,7 +5,7 @@ class Printer
   end
 
   def illegal_move_attempt
-  return 'Not ye turn laddy'
+    'Not ye turn laddy'
   end
 
   def not_finished
@@ -29,6 +29,6 @@ class Printer
   end
 
   def to_s
-    "#{game_status}"
+    game_status.to_s
   end
 end
