@@ -33,9 +33,10 @@ describe TicTacToe do
   end
 
   describe 'taking turns' do
-    let(:player1) { double('Player1', turns: 1, place_piece: nil) }
-    let(:player2) { double('Player2', turns: 0, place_piece: 'You have played a turn') }
-    let(:tictactoe) { TicTacToe.new(Grid.new, player1, player2) }
+    let(:player1) { double('Player1', turns: 1, place_piece: 'x') }
+    let(:player2) { double('Player2', turns: 0, place_piece: 'x') }
+    let(:grid) { double('Grid', occupied_space: false, place_symbol: true) }
+    let(:tictactoe) { TicTacToe.new(grid, player1, player2) }
     it 'player 2 can take a turn' do
       expect(tictactoe.take_turn(player2, 'x', 'x', 'x')).to eq 'You have played a turn'
     end
@@ -43,10 +44,16 @@ describe TicTacToe do
       tictactoe.take_turn(player1, 'x', 'x', 'x')
       expect(tictactoe.take_turn(player1, 'x', 'x', 'x')).to eq 'Not ye turn laddy'
     end
+  end
 
+  describe 'trying to overwrite' do
+    let(:player1) { double('Player1', turns: 1, place_piece: 'x') }
+    let(:player2) { double('Player2', turns: 0, place_piece: 'x') }
+    let(:grid) { double('Grid', occupied_space: true, place_symbol: true, row_a: [nil, nil, nil]) }
+    let(:tictactoe) { TicTacToe.new(grid, player1, player2) }
     it 'wont let player 1 overwrite player2' do
-      # tictactoe.take_turn(player1, 'x', 'x', 'x')
-      # expect(tictactoe.take_turn(player1, 'x', 'x', 'x')).to eq 'Not ye turn laddy'
+      tictactoe.take_turn(player1, grid.row_a, 'x', 0)
+      expect(tictactoe.take_turn(player1, grid.row_a, 'x', 0)).to eq 'Occupied'
     end
   end
 end

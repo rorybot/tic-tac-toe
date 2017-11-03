@@ -12,7 +12,7 @@ class Printer
     'not finished'
   end
 
-  def occupied_space
+  def occupied_space_warning
     'Occupied'
   end
 
