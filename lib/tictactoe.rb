@@ -3,7 +3,7 @@ require_relative 'grid'
 require_relative 'printer'
 class TicTacToe
   attr_reader :player1, :player2, :grid, :printer, :last_turn
-  def initialize(grid = Grid.new, player1 = Player.new('Hero'), player2 = Player.new('Nemesis'))
+  def initialize(grid = Grid.new, player1 = Player.new('Hero', symbol = 'X'), player2 = Player.new('Nemesis', symbol = 'O'))
     @player1 = player1
     @player2 = player2
     @grid = grid
@@ -16,12 +16,13 @@ class TicTacToe
     return @game_status = printer.draw if grid.draw?
   end
 
-  def take_turn(player, row, index, symbol)
+  def take_turn(player, row, index)
     return printer.illegal_move_attempt if last_turn == player
     return printer.occupied_space_warning if grid.occupied_space(row, index)
     log_turn(player)
-    grid.place_symbol(row, index, symbol)
-    return printer.turn_played
+    grid.place_symbol(row, index, player.symbol)
+    return grid.row_query unless grid.win_check
+    return printer.announce_victory(grid.win_check)
     raise 'WTF'
   end
 
