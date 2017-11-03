@@ -11,10 +11,6 @@ class Grid
     [row_a, row_b, row_c]
   end
 
-  def every_letter_the_same(line)
-    line.all? { |letter| letter.class == String && letter == line[0] }
-  end
-
   def place_symbol(row, index, symbol)
     return row[index] = symbol unless row[index].class == String
     false
@@ -36,6 +32,10 @@ class Grid
   end
 
   private
+
+  def every_letter_the_same(line)
+    line.all? { |letter| letter.class == String && letter == line[0] }
+  end
 
   def check_every_horizontal_row_for_winner
     row_query.any? { |row| return row.first if every_letter_the_same(row) }

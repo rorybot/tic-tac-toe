@@ -21,8 +21,9 @@ class TicTacToe
     return printer.occupied_space_warning if grid.occupied_space(row, index)
     log_turn(player)
     grid.place_symbol(row, index, player.symbol)
-    return grid.row_query unless grid.win_check
-    return printer.announce_victory(grid.win_check)
+    return printer.announce_victory(grid.win_check) if grid.win_check
+    return printer.draw if grid.draw?
+    return grid.row_query
     raise 'WTF'
   end
 
