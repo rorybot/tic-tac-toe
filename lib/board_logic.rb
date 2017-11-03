@@ -9,18 +9,18 @@ class BoardLogic
     @grid = grid
   end
 
-  def array_of_potential_wins
-    [check_every_horizontal_row_for_winner, check_every_diagonal_for_winner, check_every_vertical_row_for_winner]
-  end
-
   def place_symbol(row, index, symbol)
     return grid.place_symbol(row, index, symbol) unless grid.occupied_space(row, index)
     false
   end
 
   def return_winner_string
-    [grid.check_every_horizontal_row_for_winner, grid.check_every_vertical_row_for_winner,
-     grid.check_every_diagonal_for_winner].any? { |result| return result if result.class == String }
+    grid.win_check.any? { |result| return result if result.class == String }
+    false
+  end
+
+  def draw?
+    return grid.row_query.all? { |row| grid.occupied_space(row, 0) && grid.occupied_space(row, 1) && grid.occupied_space(row, 2) }
     false
   end
 end

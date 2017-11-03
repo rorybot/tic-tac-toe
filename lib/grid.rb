@@ -7,7 +7,6 @@ class Grid
   end
 
   def row_query(index = nil)
-    # return [row_a[i], row_b[i], row_c[i]]if index.class == Array
     return [row_a[index], row_b[index], row_c[index]] if index
     [row_a, row_b, row_c]
   end
@@ -16,14 +15,21 @@ class Grid
     line.all? { |letter| letter == line[0] }
   end
 
-  def place_symbol(row,index,symbol)
+  def place_symbol(row, index, symbol)
     row[index] = symbol
     row
   end
 
-  def occupied_space(row,index)
+  def occupied_space(row, index)
     row[index].class == String
   end
+
+  def win_check
+    [check_every_horizontal_row_for_winner, check_every_vertical_row_for_winner,
+     check_every_diagonal_for_winner]
+  end
+
+  private
 
   def check_every_horizontal_row_for_winner
     row_query.any? { |row| return row.first if every_letter_the_same(row) }

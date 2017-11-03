@@ -74,5 +74,14 @@ describe BoardLogic do
       board_logic.place_symbol(board_logic.row_c, 2, 'O')
       expect(board_logic.draw?).to eq true
     end
+
+    it 'canNOT declare a draw ' do
+      (0..1).to_a.each { |i| board_logic.place_symbol(board_logic.row_a, i, 'X') }
+      board_logic.place_symbol(board_logic.row_a, 2, 'O')
+      (0..1).to_a.each { |i| board_logic.place_symbol(board_logic.row_b, i, 'O') }
+      board_logic.place_symbol(board_logic.row_b, 2, 'X')
+      (0..1).to_a.each { |i| board_logic.place_symbol(board_logic.row_c, i, 'X') }
+      expect(board_logic.draw?).to eq false
+    end
   end
 end
