@@ -5,6 +5,8 @@
 
 We were instructed to build a basic tic-tac-toe application. The goal was not to design it as a fully-featured app with a user interface, but instead to focus on good OOD practice, such that the code could be easily understood and then hooked into an interface. The idea was to create something with good, clean logic, that could be easily modified, if need be, or else connected straight to a command-line interface, GUI, or piece of hardware.
 
+This is built purely in Ruby.
+
 ## Code analysis
 
 The game operates primarily through the TicTacToe class. This injects Players 1 and 2 (with their respective symbols, as class instance), as well as the Grid (also a class instance). The responsibilites break down like so:
